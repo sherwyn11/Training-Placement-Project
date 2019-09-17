@@ -1,0 +1,29 @@
+{
+  "name": "training-placement",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
+    "body-parser": "^1.19.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "firebase-admin": "^8.5.0",
+    "firebase-functions": "^3.2.0",
+    "googleapis": "^39.2.0",
+    "gridfs-stream": "^1.1.1",
+    "md5": "^2.2.1",
+    "method-override": "^3.0.0",
+    "mongodb": "^3.3.2",
+    "mongoose": "^5.6.11",
+    "multer": "^1.4.2",
+    "multer-gridfs-storage": "^3.3.0"
+  }
+}
