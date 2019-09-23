@@ -15,12 +15,12 @@ var  user_new
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if(firebaseUser){
         firebaseUser.sendEmailVerification().then(function() {
-            console.log('email sent')
+            alert('email sent')
         }).catch(function(error_email) {
             console.log(error_email)
         });
         console.log(firebaseUser.email)
-        location.href = '/teacher-home'
+        //location.href = '/teacher-home'
     }else{
         console.log('No user currently logged in')
 

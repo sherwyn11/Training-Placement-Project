@@ -22,7 +22,7 @@
                     <h2 class="title">Apply for the Placement-Project</h2>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form> 
                         <div class="form-row">
                             <div class="name" >Full name</div>
                             <div class="value">
@@ -44,13 +44,13 @@
                             </div>
                         </div>
                         <div class="form-row">
-                                <div class="name">CGPA</div>
-                                <div class="value">
-                                    <div class="input-group">
-                                        <input class="input--style-6" type="text" id="cgpa" name="cgpa" required>
-                                    </div>
+                            <div class="name">Contact number</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-6" type="tel" id="contact" name="contact" required>
                                 </div>
                             </div>
+                        </div>
                         <div class="form-row">
                                 <div class="name">Password</div>
                                 <div class="value">
@@ -86,10 +86,11 @@
                         </div>
                     </form>
                     <div class="form-row">
+                        <div id="recaptcha-container"></div><br></br>
                         <button class="btn btn--radius-2 btn--blue-2" onclick="register()" type="submit">Register</button>
                         <div class="value">
                             <div class="input-group js-input-file">
-                                <p style="margin-left:70px;margin-top:15px;">If you are a teacher  <a style="color:#185ac1;text-decoration:none" href="/teacher">Click here</a></p>
+                                <p style="margin-left:70px;margin-top:15px;">If you are a teacher  <a style="color:#185ac1;text-decoration:none" href="/teacher-login">Click here</a></p>
                             </div>
                         </div>
                     </div>
@@ -103,6 +104,7 @@
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#config-web-app -->
+     <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-auth.js"></script>
      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-storage.js"></script>
      <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-firestore.js"></script>
 

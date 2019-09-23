@@ -13,6 +13,17 @@ const sendNewCompanyEmail = (email,name) => {
     })
 }
 
+const sendMail = (email) => {
+    sgMail.sendMultiple({
+        to: email,
+        from: 'sherwyndsouza1999@gmail.com',
+        subject: 'Forgot password',
+        html: '<p>Click here if you forgot your password<p><br></br><a href = "/">localhost:3000/forgot-password</a>'
+    })
+}
+
+
 module.exports = {
-    sendNewCompanyEmail
+    sendNewCompanyEmail,
+    sendMail
 }
