@@ -7,7 +7,9 @@ require('./db/init')
 const {saveApply} = require('./db/apply')
 const {sendMail} = require('./emails/account')
 const {saveDetails} = require('./db/users')
-const getAllData = require('./db/companies')
+const {getAllData} = require('./db/companies')
+const {getAllApplied} = require('./db/companies')
+const {getAllSelected} = require('./db/companies')
 const {getAppliedCompanies} = require('./db/users')
 const {sendNewCompanyEmail} = require('./emails/account')
 const app = express()
@@ -35,6 +37,31 @@ app.get('/teacher-login', function (req, res) {
 app.get('/teacher-home', function (req, res) {
   res.render('teacher-home')
 })
+
+app.post('/show-students-data', function (req, res) {
+  var type = req.body.type
+  var companyName = req.body.resData.name
+  var data = null
+  async function getRequiredData(){
+    if(type == 0){
+      var selected = await getAllSelected(companyName)
+      console.log("Get Selected Students", selected)
+      data = { users: selected }
+    }
+    if(type == 1){
+      var applied = await getAllApplied(companyName)
+      console.log("Get Applied Students", applied)
+      data = { users: applied }
+    }
+    res.send(data)
+  }
+  getRequiredData()
+})
+
+app.get('/show-students', function (req, res) {
+  
+})
+
 
 app.get('/teacher-home-data', function (req, res) {
   async function getDatabaseData(){

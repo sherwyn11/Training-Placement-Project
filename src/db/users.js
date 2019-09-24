@@ -46,7 +46,6 @@ const getAppliedCompanies = (email) =>{
  }) 
 }
 
-
 module.exports = {saveDetails,getAppliedCompanies}
 
       

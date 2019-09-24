@@ -81,10 +81,24 @@ let createTaskCard = (task,i) => {
     let last = document.createElement('div');
     last.innerText = "Last date to apply : " + task.last_date_apply;
     last.className = 'card-last';
+    let br = document.createElement('br')
+    let btn_s = document.createElement('BUTTON')
+    btn_s.innerText = "Selected"
+    btn_s.className = 'btn btn-primary';
+    btn_s.id = 'btn_selected'
+    btn_s.name = i
+    let btn_a = document.createElement('BUTTON')
+    btn_a.innerText = "Applied"
+    btn_a.className = 'btn btn-primary';
+    btn_a.id = 'btn_applied'
+    btn_a.name = i
     cardBody.appendChild(title);
     cardBody.appendChild(openings);
     cardBody.appendChild(cgpa);
     cardBody.appendChild(last);
+    cardBody.appendChild(br);
+    cardBody.appendChild(btn_s);
+    cardBody.appendChild(btn_a);
     card.appendChild(cardBody);
     cardContainer.appendChild(card);
 
@@ -116,10 +130,22 @@ document.getElementById('logout').addEventListener('click', e => {
 function getCards(){
     var list = document.getElementsByClassName('btn btn-primary')
     for(i = 0 ;i<list.length ;i++){
-        for(j = 0;j<nos.length;j++){
-            if(i == nos[j]){
-                list[i].disabled = true
+        list[i].addEventListener('click',e => {
+            var res = e.target.name
+            var type = 1;
+            if( e.target.id == 'btn_selected'){
+                type = 0;
             }
-        }
+            console.log(type, data[res])
+            axios.post('/show-students-data', {
+                resData: data[res],
+                type: type
+            }).then(function (response) {
+                document.location.href = '/show-students';
+            }).catch(function (error) {
+                console.log(error);
+            });
+        })
     }
+    console.log(list)
 }
