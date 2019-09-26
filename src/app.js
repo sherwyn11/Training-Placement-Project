@@ -38,29 +38,24 @@ app.get('/teacher-home', function (req, res) {
   res.render('teacher-home')
 })
 
-app.post('/show-students-data', function (req, res) {
+app.post('/show-students', function (req, res) {
   var type = req.body.type
   var companyName = req.body.resData.name
   var data = null
   async function getRequiredData(){
     if(type == 0){
       var selected = await getAllSelected(companyName)
-      console.log("Get Selected Students", selected)
       data = { users: selected }
     }
     if(type == 1){
       var applied = await getAllApplied(companyName)
-      console.log("Get Applied Students", applied)
       data = { users: applied }
     }
-    res.send(data)
   }
   getRequiredData()
+  res.render('/show-students', { data })
 })
 
-app.get('/show-students', function (req, res) {
-  
-})
 
 
 app.get('/teacher-home-data', function (req, res) {

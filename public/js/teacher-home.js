@@ -137,13 +137,9 @@ function getCards(){
                 type = 0;
             }
             console.log(type, data[res])
-            axios.post('/show-students-data', {
+            axios.post('/show-students', {
                 resData: data[res],
                 type: type
-            }).then(function (response) {
-                document.location.href = '/show-students';
-            }).catch(function (error) {
-                console.log(error);
             });
         })
     }
