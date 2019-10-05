@@ -6,9 +6,9 @@ var firebaseConfig = {
     storageBucket: "training-and-placement-1110.appspot.com",
     messagingSenderId: "484256523765",
     appId: "1:484256523765:web:aabbdfe0e77d4138"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 var  user_new
 

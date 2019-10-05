@@ -33,7 +33,6 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
             });
     }else{
         console.log('No user currently logged in')
-
     }
 })  
 

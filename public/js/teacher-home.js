@@ -13,7 +13,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
     if(firebaseUser){
         console.log(firebaseUser.email)
     }else{
-        console.log('no user')
+        console.log('No user')
     }
 })  
 
@@ -136,12 +136,9 @@ function getCards(){
             if( e.target.id == 'btn_selected'){
                 type = 0;
             }
-            console.log(type, data[res])
-            axios.post('/show-students', {
-                resData: data[res],
-                type: type
-            });
+
+            document.location.href = "/show-students?type=" + type + "&companyName=" + data[res].name
         })
     }
-    console.log(list)
+    // console.log(list)
 }

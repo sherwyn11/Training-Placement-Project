@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Colorlib Templates">
@@ -15,40 +15,80 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-    <style>
-            .loader {
-              margin: auto;
-              border: 16px solid #f3f3f3;
-              border-radius: 50%;
-              border-top: 16px solid #3498db;
-              width: 100px;
-              height: 100px;
-              -webkit-animation: spin 2s linear infinite;
-              animation: spin 2s linear infinite;
-              position: absolute;
-            }
-
-            @-webkit-keyframes spin {
-              0% { -webkit-transform: rotate(0deg); }
-              100% { -webkit-transform: rotate(360deg); }
-            }
-            
-            @keyframes spin {
-              0% { transform: rotate(0deg); }
-              100% { transform: rotate(360deg); }
-            }
-    </style>
-
-</head>
-
-<body>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#config-web-app -->
-     <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-auth.js"></script>
     <script src="/js/show-students.js"></script>
-</body>
+    <style>
+      .loader {
+        margin: auto;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 100px;
+        height: 100px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+        position: absolute;
+      }
+
+      @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .button {
+        background-color: seagreen; /* Green */
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+        font-size: 12px;
+        height: 40px;
+        width: 100px;
+        align-content: center;
+        margin:auto;
+        display:block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <% if(data.users.length > 0){ %>
+        <table id="studentTable" style="width:100%">
+          <tr>
+            <th>Roll Number</th>
+            <th>Full Name</th>
+            <th>CGPA</th>
+            <th>Branch</th>
+            <th>Contact Number</th>
+          </tr>
+          <% for(var i=0; i < data.users.length; i++) { %>
+            <tr>
+              <td><%= data.users[i].rollno %></td>
+              <td><%= data.users[i].name %></td>
+              <td><%= data.users[i].cgpa %></td>
+              <td><%= data.users[i].branch %></td>
+              <td><%= data.users[i].contact %></td>
+            </tr>
+          <% } %>
+        </table>
+      <% } else{ %>  
+        <h3 style="text-align: center; margin-top: 10px">No Student Data Available Yet</h3>
+      <% } %>
+    </div>
+    <div style="margin-top: 15px;">
+      <button class="button" type="button" onclick="exportTabletoXlsx(studentTable)">Export Table</button>
+    </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#config-web-app -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.3/firebase-auth.js"></script>  </body>
 </html>

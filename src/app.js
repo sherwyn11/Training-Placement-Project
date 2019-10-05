@@ -12,6 +12,8 @@ const {getAllApplied} = require('./db/companies')
 const {getAllSelected} = require('./db/companies')
 const {getAppliedCompanies} = require('./db/users')
 const {sendNewCompanyEmail} = require('./emails/account')
+const{getAppliedNumber} = require('./db/graph.js')
+const{getSelectedNumber} = require('./db/graph.js')
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -30,6 +32,23 @@ app.get('/register', function (req, res) {
 
 // ----------------------------Teacher--------------------------------------- //
 
+app.get('/plot-graph', async function (req, res) {
+  var data = await getAppliedNumber().then(data => {
+    return data
+  })
+  res.render('plot-graph', {data: data})
+})
+
+app.post('/plot-graph-data', async function (req, res) {
+  var appliedData = await getAppliedNumber().then(data => {
+    return data
+  })
+  var selectedData = await getSelectedNumber().then(data => {
+    return data
+  })
+  res.send({appliedData, selectedData})
+})
+
 app.get('/teacher-login', function (req, res) {
   res.render('teacher-login')
 })
@@ -41,6 +60,12 @@ app.get('/teacher-home', function (req, res) {
 app.post('/show-students', function (req, res) {
   var type = req.body.type
   var companyName = req.body.resData.name
+  res.redirect("/show-students?type=" + type + "&companyName=" + companyName)
+})
+
+app.get('/show-students', async function(req, res){
+  var type = Number(req.query.type)
+  var companyName = req.query.companyName
   var data = null
   async function getRequiredData(){
     if(type == 0){
@@ -52,11 +77,9 @@ app.post('/show-students', function (req, res) {
       data = { users: applied }
     }
   }
-  getRequiredData()
-  res.render('/show-students', { data })
+  await getRequiredData()
+  res.render('show-students', {data: data})
 })
-
-
 
 app.get('/teacher-home-data', function (req, res) {
   async function getDatabaseData(){
