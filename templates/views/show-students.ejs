@@ -67,6 +67,7 @@
             <th>CGPA</th>
             <th>Branch</th>
             <th>Contact Number</th>
+            <th>Email ID</th>
           </tr>
           <% for(var i=0; i < data.users.length; i++) { %>
             <tr>
@@ -75,6 +76,7 @@
               <td><%= data.users[i].cgpa %></td>
               <td><%= data.users[i].branch %></td>
               <td><%= data.users[i].contact %></td>
+              <td><%= data.users[i].email %></td>
             </tr>
           <% } %>
         </table>

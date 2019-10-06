@@ -94,6 +94,7 @@ const getUserDetails = (email) => {
         console.log('No such document!');
       } else {
         userList.push(doc.data())
+        userList[0].email = email.email
         resolve(userList[0])
       }
     })

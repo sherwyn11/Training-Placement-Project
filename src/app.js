@@ -92,6 +92,19 @@ app.get('/teacher-home-data', function (req, res) {
   getDatabaseData()
 })
 
+app.get('/upload', function(req, res){
+  res.render('upload')
+})
+
+app.post('/upload-excel', function(req, res){
+  var addStudents = []
+  for(var student of req.body.data){
+    addStudents.push({email: student['Email ID'], rollNo: student[' Roll Number']})
+  }
+  console.log(addStudents)
+  res.send("Hoi")
+})
+
 // ----------------------------Student--------------------------------------- //
 
 app.get('/student-home', function (req, res) {
