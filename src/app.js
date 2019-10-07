@@ -5,6 +5,7 @@ const methodOverride = require('method-override')
 const md5 = require('md5')
 require('./db/init')
 const {saveApply} = require('./db/apply')
+const {saveSelected} = require('./db/select')
 const {sendMail} = require('./emails/account')
 const {saveDetails} = require('./db/users')
 const {getAllData} = require('./db/companies')
@@ -99,9 +100,9 @@ app.get('/upload', function(req, res){
 app.post('/upload-excel', function(req, res){
   var addStudents = []
   for(var student of req.body.data){
-    addStudents.push({email: student['Email ID'], rollNo: student[' Roll Number']})
+    addStudents.push({email: student['Email ID'], rollNo: student[' Roll Number'], company: student['Company']})
   }
-  console.log(addStudents)
+  saveSelected(addStudents)
   res.send("Hoi")
 })
 
