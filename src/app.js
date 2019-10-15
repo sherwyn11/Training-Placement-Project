@@ -15,6 +15,8 @@ const {getAppliedCompanies} = require('./db/users')
 const {sendNewCompanyEmail} = require('./emails/account')
 const{getAppliedNumber} = require('./db/graph.js')
 const{getSelectedNumber} = require('./db/graph.js')
+const{saveQuestions} = require('./db/questions.js')
+const{initQuestions} = require('./db/questions.js')
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -108,6 +110,10 @@ app.post('/upload-excel', function(req, res){
 
 // ----------------------------Student--------------------------------------- //
 
+app.get('/add', function (req, res) {
+  res.render('add')
+})
+
 app.get('/student-home', function (req, res) {
   res.render('student-home')
 })
@@ -178,6 +184,19 @@ app.post('/savedetails', function(req, res) {
   res.send({
     msg: 'Data saved successfully'
   })
+}); 
+
+app.post('/saveQuestions', function(req, res) {
+  let test = req.body.data
+  console.log(test)
+  var arr = []
+  for(var i =0;i< test.length; i++){
+      arr.push(test[i].Questions)
+  }
+  console.log(arr)
+  for(var i =0;i< test.length; i++){
+    saveQuestions(arr[i]) 
+  }
 }); 
 
 app.listen(port, () => {
