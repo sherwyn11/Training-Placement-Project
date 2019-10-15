@@ -147,3 +147,7 @@ function getCards(){
         })
     }
 }
+ 
+function ques(){
+    location.href = '/add';
+}
